@@ -2,6 +2,8 @@
 // '' Tile knows its location on the grid, if it is a ship and if it has been 
 // '' shot before
 // '' </summary>
+using System;
+
 public class Tile
 {
 

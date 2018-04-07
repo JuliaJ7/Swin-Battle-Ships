@@ -1,4 +1,5 @@
 using SwinGameSDK;
+using System;
 using System.Collections.Generic;
 
 // '' <summary>
@@ -78,8 +79,8 @@ public class GameController
         }
         _human = new Player (_theGame);
         // AddHandler _human.PlayerGrid.Changed, AddressOf GridChanged
-        _ai.PlayerGrid.Changed += new System.EventHandler (GridChanged);
-        _theGame.AttackCompleted += new System.EventHandler (AttackCompleted);
+        _ai.PlayerGrid.Changed += new EventHandler (GridChanged);
+        _theGame.AttackCompleted += new BattleShipsGame.AttackCompletedHandler (AttackCompleted);
         AddNewState (GameState.Deploying);
     }
 
@@ -89,10 +90,8 @@ public class GameController
     private static void EndGame ()
     {
         // RemoveHandler _human.PlayerGrid.Changed, AddressOf GridChanged
-        _ai.PlayerGrid.Changed;
-        new System.EventHandler (this.GridChanged);
-        _theGame.AttackCompleted;
-        new System.EventHandler (this.AttackCompleted);
+        _ai.PlayerGrid.Changed -= GridChanged;
+        _theGame.AttackCompleted -= AttackCompleted;
     }
 
     // '' <summary>

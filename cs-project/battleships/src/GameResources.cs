@@ -181,10 +181,10 @@ public static class GameResources
         const int TY = 493;
         const int TW = 200;
         const int TH = 25;
-        const int STEPS = 5;
+        //TODO(Xavier): const int STEPS = 5;
         const int BG_X = 279;
 
-        int fullW = (260 * number) / STEPS;
+        //TODO(Xavier): int fullW = (260 * number) / STEPS;
         Rectangle toDraw = new Rectangle ();
 
         SwinGame.DrawBitmap (_LoaderEmpty, BG_X, BG_Y);
@@ -196,7 +196,7 @@ public static class GameResources
         toDraw.Width = TW;
         toDraw.Height = TH;
 
-        SwinGame.DrawTextLines (message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, toDraw);
+        // TODO(Xavier): SwinGame.DrawTextLines (message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, toDraw);
         //  SwinGame.DrawTextLines(message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, TX, TY, TW, TH)
         SwinGame.RefreshScreen ();
         SwinGame.ProcessEvents ();

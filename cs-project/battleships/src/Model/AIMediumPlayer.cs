@@ -35,7 +35,7 @@ public class AIMediumPlayer : AIPlayer
     // '' <param name="column">the generated column</param>
     protected override void GenerateCoords (ref int row, ref int column)
     {
-        while (((row < 0) || ((column < 0) || ((row >= EnemyGrid.Height) || ((column >= EnemyGrid.Width)|| (EnemyGrid.Item [row, column] != TileView.Sea)))))) {
+        while (((row < 0) || ((column < 0) || ((row >= EnemyGrid.Height) || ((column >= EnemyGrid.Width)|| (EnemyGrid[row, column] != TileView.Sea)))))) {
             switch (_CurrentState) {
             case AIStates.Searching:
                 SearchCoords (ref row, ref column);
@@ -96,7 +96,6 @@ public class AIMediumPlayer : AIPlayer
         } else if ((result.Value == ResultOfAttack.ShotAlready)) {
             throw new ApplicationException ("Error in AI");
         }
-
     }
 
     // '' <summary>
@@ -106,7 +105,7 @@ public class AIMediumPlayer : AIPlayer
     // '' <param name="column">the column of the targets location</param>
     private void AddTarget (int row, int column)
     {
-        if (((row >= 0) && ((column >= 0) && ((row < EnemyGrid.Height) && ((column < EnemyGrid.Width) && (EnemyGrid.Item [row, column] == TileView.Sea)))))) {
+        if (((row >= 0) && ((column >= 0) && ((row < EnemyGrid.Height) && ((column < EnemyGrid.Width) && (EnemyGrid[row, column] == TileView.Sea)))))) {
             _Targets.Push (new Location (row, column));
         }
 

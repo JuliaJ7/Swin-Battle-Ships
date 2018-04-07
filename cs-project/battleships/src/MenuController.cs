@@ -104,8 +104,7 @@ class MenuController
 
         if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
             int i;
-            for (i = 0; (i
-                        <= (_menuStructure [menu].Length - 1)); i++) {
+            for (i = 0; (i <= (_menuStructure [menu].Length - 1)); i++) {
                 // IsMouseOver the i'th button of the menu
                 if (IsMouseOverMenu (i, level, xOffset)) {
                     PerformMenuAction (menu, i);
@@ -189,7 +188,7 @@ class MenuController
             toDraw.Width = BUTTON_WIDTH;
             toDraw.Height = BUTTON_HEIGHT;
 
-            SwinGame.DrawTextLines (_menuStructure [menu] [i], MENU_COLOR, Color.Black, GameResources.GameFont ("Menu"), FontAlignment.AlignCenter, toDraw);
+            // TODO(Xavier): SwinGame.DrawTextLines (_menuStructure [menu] [i], MENU_COLOR, Color.Black, GameResources.GameFont ("Menu"), FontAlignment.AlignCenter, toDraw);
             if ((SwinGame.MouseDown (MouseButton.LeftButton) && IsMouseOverMenu (i, level, xOffset))) {
                 SwinGame.DrawRectangle (HIGHLIGHT_COLOR, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT);
             }

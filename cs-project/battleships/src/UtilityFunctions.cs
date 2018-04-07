@@ -132,7 +132,7 @@ class UtilityFunctions
                 colLeft = (left + ((cellGap + cellWidth) * col));
                 Color fillColor = SMALL_MISS;
                 bool draw = true;
-                switch (grid.Item [row, col]) {
+                switch (grid[row, col]) {
                 case TileView.Ship:
                     draw = false;
                     break;
@@ -289,17 +289,15 @@ class UtilityFunctions
         List<Sprite> ended = new List<Sprite> ();
         foreach (Sprite s in _Animations) {
             SwinGame.UpdateSprite (s);
-            if (s.animationHasEnded) {
+            if (s.AnimationHasEnded) {
                 ended.Add (s);
             }
-
         }
 
         foreach (Sprite s in ended) {
             _Animations.Remove (s);
             SwinGame.FreeSprite (s);
         }
-
     }
 
     public static void DrawAnimations ()
@@ -311,11 +309,9 @@ class UtilityFunctions
 
     public static void DrawAnimationSequence ()
     {
-        int i;
-        for (i = 1; (i <= (ANIMATION_CELLS * FRAMES_PER_CELL)); i++) {
+        for (int i = 1; (i <= (ANIMATION_CELLS * FRAMES_PER_CELL)); i++) {
             UtilityFunctions.UpdateAnimations ();
             GameController.DrawScreen ();
         }
-
     }
 }
