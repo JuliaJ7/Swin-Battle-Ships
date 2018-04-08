@@ -1,6 +1,7 @@
 using SwinGameSDK;
+using System;
 
-class GameLogic
+public class GameLogic
 {
 
     public static void Main ()
@@ -9,7 +10,11 @@ class GameLogic
         SwinGame.OpenGraphicsWindow ("Battle Ships", 800, 600);
         // Load Resources
         GameResources.LoadResources ();
-        SwinGame.PlayMusic (GameResources.GameMusic ("Background"));
+        //SwinGame.PlayMusic (GameResources.GameMusic ("Background"));
+
+        // TODO(Xavier): This a a hacky fix. Instead turn this into an
+        // init() static method for the game controller.
+        GameController controller = new GameController ();
 
         // Game Loop
         do {

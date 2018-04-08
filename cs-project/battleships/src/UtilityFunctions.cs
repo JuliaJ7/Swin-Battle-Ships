@@ -183,7 +183,7 @@ class UtilityFunctions
         // Draw the ships
         foreach (Ship s in thePlayer) {
             if (((s == null) || !s.IsDeployed)) {
-                // TODO: Continue For... Warning!!! not translated
+                continue;
             }
 
             rowTop = (top + (((cellGap + cellHeight) * s.Row) + SHIP_GAP));

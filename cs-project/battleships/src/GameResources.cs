@@ -1,5 +1,6 @@
 using SwinGameSDK;
 using System.Collections.Generic;
+using System;
 
 public static class GameResources
 {
@@ -43,7 +44,8 @@ public static class GameResources
         NewSound ("Error", "error.wav");
         NewSound ("Hit", "hit.wav");
         NewSound ("Sink", "sink.wav");
-        NewSound ("Siren", "siren.wav");
+        // NOTE(Xavier): This sound is not included in the project
+        // NewSound ("Siren", "siren.wav");
         NewSound ("Miss", "watershot.wav");
         NewSound ("Winner", "winner.wav");
         NewSound ("Lose", "lose.wav");
@@ -213,7 +215,8 @@ public static class GameResources
         SwinGame.FreeBitmap (_Animation);
         SwinGame.FreeBitmap (_LoaderEmpty);
         SwinGame.FreeBitmap (_LoaderFull);
-        Audio.FreeSoundEffect (_StartSound);
+        // TODO(Xavier): This causes the game to crash
+        // Audio.FreeSoundEffect (_StartSound);
         SwinGame.ChangeScreenSize (width, height);
     }
 
@@ -263,9 +266,10 @@ public static class GameResources
 
     private static void FreeSounds ()
     {
-        foreach (SoundEffect obj in _Sounds.Values) {
-            Audio.FreeSoundEffect (obj);
-        }
+        // NOTE(Xavier): This causes the game to crash
+        // foreach (SoundEffect obj in _Sounds.Values) {
+        //     Audio.FreeSoundEffect (obj);
+        // }
     }
 
     private static void FreeMusic ()
