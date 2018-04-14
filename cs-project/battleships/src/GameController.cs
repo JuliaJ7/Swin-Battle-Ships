@@ -157,7 +157,8 @@ public static class GameController
             PlayHitSequence (result.Row, result.Column, isHuman);
             Audio.PlaySoundEffect (GameResources.GameSound ("Sink"));
             while (Audio.SoundEffectPlaying (GameResources.GameSound ("Sink"))) {
-                SwinGame.Delay (10);
+                // NOTE(Xavier): Delay removed to speed up debugging 
+                // SwinGame.Delay (10);
                 SwinGame.RefreshScreen ();
             }
 

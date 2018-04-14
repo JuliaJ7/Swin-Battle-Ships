@@ -137,7 +137,8 @@ public class SeaGrid : ISeaGrid
             // if fails remove the ship
             throw new ApplicationException (e.Message);
         } finally {
-            // NOTE(Xavier): This is null????
+            // FIXME(Xavier): This is null????
+            // The changed event should be set earlier in the program to fix this.
             // Changed (this, EventArgs.Empty);
         }
     }

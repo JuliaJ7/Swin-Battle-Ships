@@ -71,11 +71,8 @@ public abstract class AIPlayer : Player
                 return false;
             }
 
-            // NOTE(Xavier): null checks cause stackoverflow.
             return left.Row == right.Row && left.Column == right.Column;
         }
-
-
 
         /// <summary>
         /// Check if two locations are not equal
@@ -137,16 +134,15 @@ public abstract class AIPlayer : Player
     /// </summary>
     private void Delay ()
     {
-        //Dim i as Integer
-        //For i = 0 To 150
-        for (int i = 0; i < 150; i++) {
+        // NOTE(Xavier): "Think time" removed to speed up debugging
+        //for (int i = 0; i < 150; i++) {
             // Dont delay if window is closed
             if (SwinGame.WindowCloseRequested ()) return;
 
-            SwinGame.Delay (5);
+            //SwinGame.Delay (5);
             SwinGame.ProcessEvents ();
             SwinGame.RefreshScreen ();
-        }
+        //}
     }
 
 }

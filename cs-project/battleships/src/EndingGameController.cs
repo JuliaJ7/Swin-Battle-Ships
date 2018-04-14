@@ -13,7 +13,7 @@ public static class EndingGameController
     public static void DrawEndOfGame ()
     {
         Rectangle toDraw = new Rectangle();
-        //TODO(Xavier): string whatShouldIPrint;
+        string whatShouldIPrint;
         UtilityFunctions.DrawField (GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
         UtilityFunctions.DrawSmallField (GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
         toDraw.X = 0;
@@ -21,12 +21,14 @@ public static class EndingGameController
         toDraw.Width = SwinGame.ScreenWidth ();
         toDraw.Height = SwinGame.ScreenHeight ();
         if (GameController.HumanPlayer.IsDestroyed) {
-            //TODO(Xavier): whatShouldIPrint = "YOU LOSE!";
+            whatShouldIPrint = "YOU LOSE!";
         } else {
-            //TODO(Xavier): whatShouldIPrint = "-- WINNER --";
+            whatShouldIPrint = "-- WINNER --";
         }
 
-        // TODO(Xavier): SwinGame.DrawTextLines (whatShouldIPrint, Color.White, Color.Transparent, GameResources.GameFont ("ArialLarge"), FontAlignment.AlignCenter, toDraw);
+        // TODO(Xavier): DrawTextLines
+        // SwinGame.DrawTextLines (whatShouldIPrint, Color.White, Color.Transparent, GameResources.GameFont ("ArialLarge"), FontAlignment.AlignCenter, toDraw);
+        SwinGame.DrawText (whatShouldIPrint, Color.White, Color.Transparent, GameResources.GameFont("ArialLarge"), FontAlignment.AlignCenter, toDraw);
     }
 
     // '' <summary>
