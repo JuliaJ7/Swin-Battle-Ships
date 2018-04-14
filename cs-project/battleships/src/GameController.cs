@@ -77,8 +77,13 @@ public static class GameController
             break;
         }
         _human = new Player (_theGame);
-        // AddHandler _human.PlayerGrid.Changed, AddressOf GridChanged
+        
+        // NOTE(Xavier): Should these be moved earlier???
+        // Because they are not set, when they are called earlier
+        // a crash occurs.
+        _human.PlayerGrid.Changed += new EventHandler(GridChanged);
         _ai.PlayerGrid.Changed += new EventHandler (GridChanged);
+
         _theGame.AttackCompleted += new BattleShipsGame.AttackCompletedHandler (AttackCompleted);
         AddNewState (GameState.Deploying);
     }
@@ -99,7 +104,7 @@ public static class GameController
     // '' </summary>
     // '' <param name="sender">the grid that changed</param>
     // '' <param name="args">not used</param>
-    private static void GridChanged (object sender, EventArgs args)
+    public static void GridChanged (object sender, EventArgs args)
     {
         GameController.DrawScreen ();
         SwinGame.RefreshScreen ();

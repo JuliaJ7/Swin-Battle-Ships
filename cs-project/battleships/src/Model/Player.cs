@@ -47,6 +47,7 @@ public class Player : IEnumerable
     public Player (BattleShipsGame controller)
     {
         _playerGrid = new SeaGrid (_Ships);
+
         _game = controller;
         // for each ship add the ships name so the seagrid knows about them
         foreach (ShipName name in Enum.GetValues (typeof (ShipName))) {
@@ -210,6 +211,7 @@ public class Player : IEnumerable
                     placementSuccessful = false;
                 }
             }
+
         }
     }
 

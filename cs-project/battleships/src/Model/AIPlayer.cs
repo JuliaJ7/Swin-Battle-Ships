@@ -62,8 +62,20 @@ public abstract class AIPlayer : Player
         /// <returns>true if location 1 and location 2 are at the same spot</returns>
         public static bool operator == (Location left, Location right)
         {
-            return left != null && right != null && left.Row == right.Row && left.Column == right.Column;
+            if (object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if (object.ReferenceEquals(left, null) || object.ReferenceEquals(right, null))
+            {
+                return false;
+            }
+
+            // NOTE(Xavier): null checks cause stackoverflow.
+            return left.Row == right.Row && left.Column == right.Column;
         }
+
+
 
         /// <summary>
         /// Check if two locations are not equal
@@ -71,7 +83,7 @@ public abstract class AIPlayer : Player
         /// <param name="left">location 1</param>
         /// <param name="right">location 2</param>
         /// <returns>true if location 1 and location 2 are not at the same spot</returns>
-        public static bool operator != (Location left, Location right)
+        public static bool operator !=(Location left, Location right)
         {
             return !(left == right);
         }
