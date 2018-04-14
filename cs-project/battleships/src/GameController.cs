@@ -7,9 +7,8 @@ using System.Collections.Generic;
 // '' managing user input, and displaying the current state of the
 // '' game.
 // '' </summary>
-public class GameController
+public static class GameController
 {
-
     private static BattleShipsGame _theGame;
 
     private static Player _human;
@@ -44,7 +43,7 @@ public class GameController
         }
     }
 
-    public GameController ()
+    public static void Init ()
     {
         // bottom state will be quitting. If player exits main menu then the game is over
         _state.Push (GameState.Quitting);

@@ -6,9 +6,8 @@ using System;
 // '' from the menus in the game. These include the main menu, game
 // '' menu and the settings m,enu.
 // '' </summary>
-class MenuController
+public static class MenuController
 {
-
     private static string [][] _menuStructure = new string[][] {
         new string[] {"PLAY", "SETUP", "SCORES", "QUIT"},
         new string[] {"RETURN", "SURRENDER", "QUIT"},

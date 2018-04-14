@@ -4,7 +4,7 @@ using System;
 // '' <summary>
 // '' The battle phase is handled by the DiscoveryController.
 // '' </summary>
-class DiscoveryController
+public static class DiscoveryController
 {
 
     // '' <summary>

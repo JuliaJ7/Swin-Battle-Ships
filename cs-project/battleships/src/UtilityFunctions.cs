@@ -6,7 +6,7 @@ using System.Collections.Generic;
 // '' drawing and interacting with the Mouse.
 // '' </summary>
 
-class UtilityFunctions
+public static class UtilityFunctions
 {
 
     public const int FIELD_TOP = 122;
@@ -86,7 +86,7 @@ class UtilityFunctions
     // '' <param name="showShips">indicates if the ships should be shown</param>
     public static void DrawField (ISeaGrid grid, Player thePlayer, bool showShips)
     {
-        UtilityFunctions.DrawCustomField (grid, thePlayer, false, showShips, FIELD_LEFT, FIELD_TOP, FIELD_WIDTH, FIELD_HEIGHT, CELL_WIDTH, CELL_HEIGHT, CELL_GAP);
+        DrawCustomField (grid, thePlayer, false, showShips, FIELD_LEFT, FIELD_TOP, FIELD_WIDTH, FIELD_HEIGHT, CELL_WIDTH, CELL_HEIGHT, CELL_GAP);
     }
 
     // '' <summary>
@@ -103,7 +103,8 @@ class UtilityFunctions
         const int SMALL_FIELD_CELL_HEIGHT = 13;
         const int SMALL_FIELD_CELL_WIDTH = 13;
         const int SMALL_FIELD_CELL_GAP = 4;
-        UtilityFunctions.DrawCustomField (grid, thePlayer, true, true, SMALL_FIELD_LEFT, SMALL_FIELD_TOP, SMALL_FIELD_WIDTH, SMALL_FIELD_HEIGHT, SMALL_FIELD_CELL_WIDTH, SMALL_FIELD_CELL_HEIGHT, SMALL_FIELD_CELL_GAP);
+
+        DrawCustomField (grid, thePlayer, true, true, SMALL_FIELD_LEFT, SMALL_FIELD_TOP, SMALL_FIELD_WIDTH, SMALL_FIELD_HEIGHT, SMALL_FIELD_CELL_WIDTH, SMALL_FIELD_CELL_HEIGHT, SMALL_FIELD_CELL_GAP);
     }
 
     // '' <summary>
