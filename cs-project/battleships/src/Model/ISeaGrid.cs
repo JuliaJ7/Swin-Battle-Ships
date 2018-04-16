@@ -6,19 +6,22 @@ using System;
 // '' </summary>
 public interface ISeaGrid
 {
-    int Width {
-        get;
-    }
+	int Width
+	{
+		get;
+	}
 
-    int Height {
-        get;
-    }
+	int Height
+	{
+		get;
+	}
 
-    event EventHandler Changed;
+	event EventHandler Changed;
 
-    TileView this [int x, int y] {
-        get;
-    }
+	TileView this[int x, int y]
+	{
+		get;
+	}
 
-    AttackResult HitTile (int row, int col);
+	AttackResult HitTile(int row, int col);
 }

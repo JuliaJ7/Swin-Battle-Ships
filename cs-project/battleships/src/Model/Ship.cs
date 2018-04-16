@@ -10,119 +10,132 @@ using System.Collections.Generic;
 // '' </remarks>
 public class Ship
 {
-    private ShipName _shipName;
+	private ShipName _shipName;
+	private int _sizeOfShip;
+	private int _hitsTaken = 0;
+	private List<Tile> _tiles;
+	private int _row;
+	private int _col;
+	private Direction _direction;
 
-    private int _sizeOfShip;
+	// '' <summary>
+	// '' The type of ship
+	// '' </summary>
+	// '' <value>The type of ship</value>
+	// '' <returns>The type of ship</returns>
+	public string Name
+	{
+		get
+		{
+			if (_shipName == ShipName.AircraftCarrier)
+			{
+				return "Aircraft Carrier";
+			}
 
-    private int _hitsTaken = 0;
+			return _shipName.ToString();
+		}
+	}
 
-    private List<Tile> _tiles;
+	public int Size
+	{
+		get
+		{
+			return _sizeOfShip;
+		}
+	}
 
-    private int _row;
+	public int Hits
+	{
+		get
+		{
+			return _hitsTaken;
+		}
+	}
 
-    private int _col;
+	public int Row
+	{
+		get
+		{
+			return _row;
+		}
+	}
 
-    private Direction _direction;
+	public int Column
+	{
+		get
+		{
+			return _col;
+		}
+	}
 
-    // '' <summary>
-    // '' The type of ship
-    // '' </summary>
-    // '' <value>The type of ship</value>
-    // '' <returns>The type of ship</returns>
-    public string Name {
-        get {
-            if ((_shipName == ShipName.AircraftCarrier)) {
-                return "Aircraft Carrier";
-            }
+	public Direction Direction
+	{
+		get
+		{
+			return _direction;
+		}
+	}
 
-            return _shipName.ToString ();
-        }
-    }
+	public Ship(ShipName ship)
+	{
+		_shipName = ship;
+		_tiles = new List<Tile>();
 
-    public int Size {
-        get {
-            return _sizeOfShip;
-        }
-    }
+		// gets the ship size from the enumarator
+		_sizeOfShip = (int)(_shipName);
+	}
 
-    public int Hits {
-        get {
-            return _hitsTaken;
-        }
-    }
+	// '' <summary>
+	// '' Add tile adds the ship tile
+	// '' </summary>
+	// '' <param name="tile">one of the tiles the ship is on</param>
+	public void AddTile(Tile tile)
+	{
+		_tiles.Add(tile);
+	}
 
-    public int Row {
-        get {
-            return _row;
-        }
-    }
+	// '' <summary>
+	// '' Remove clears the tile back to a sea tile
+	// '' </summary>
+	public void Remove()
+	{
+		foreach (Tile tile in _tiles)
+		{
+			tile.ClearShip();
+		}
 
-    public int Column {
-        get {
-            return _col;
-        }
-    }
+		_tiles.Clear();
+	}
 
-    public Direction Direction {
-        get {
-            return _direction;
-        }
-    }
+	public void Hit()
+	{
+		_hitsTaken = (_hitsTaken + 1);
+	}
 
-    public Ship (ShipName ship)
-    {
-        _shipName = ship;
-        _tiles = new List<Tile> ();
-        // gets the ship size from the enumarator
-        _sizeOfShip = (int)(_shipName);
-    }
+	// '' <summary>
+	// '' IsDeployed returns if the ships is deployed, if its deplyed it has more than
+	// '' 0 tiles
+	// '' </summary>
+	public bool IsDeployed
+	{
+		get
+		{
+			return _tiles.Count > 0;
+		}
+	}
 
-    // '' <summary>
-    // '' Add tile adds the ship tile
-    // '' </summary>
-    // '' <param name="tile">one of the tiles the ship is on</param>
-    public void AddTile (Tile tile)
-    {
-        _tiles.Add (tile);
-    }
+	public bool IsDestroyed
+	{
+		get
+		{
+			return Hits == Size;
+		}
+	}
 
-    // '' <summary>
-    // '' Remove clears the tile back to a sea tile
-    // '' </summary>
-    public void Remove ()
-    {
-        foreach (Tile tile in _tiles) {
-            tile.ClearShip ();
-        }
-
-        _tiles.Clear ();
-    }
-
-    public void Hit ()
-    {
-        _hitsTaken = (_hitsTaken + 1);
-    }
-
-    // '' <summary>
-    // '' IsDeployed returns if the ships is deployed, if its deplyed it has more than
-    // '' 0 tiles
-    // '' </summary>
-    public bool IsDeployed {
-        get {
-            return (_tiles.Count > 0);
-        }
-    }
-
-    public bool IsDestroyed {
-        get {
-            return Hits == Size;
-        }
-    }
-
-    internal void Deployed (Direction direction, int row, int col)
-    {
-        _row = row;
-        _col = col;
-        _direction = direction;
-    }
+	internal void Deployed(Direction direction, int row, int col)
+	{
+		_row = row;
+		_col = col;
+		_direction = direction;
+	}
 }

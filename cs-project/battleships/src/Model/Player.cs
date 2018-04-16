@@ -8,211 +8,244 @@ using System.Collections.Generic;
 // '' </summary>
 public class Player : IEnumerable
 {
-    protected static Random _Random = new Random ();
+	protected static Random _random = new Random();
+	protected BattleShipsGame _game;
 
-    private Dictionary<ShipName, Ship> _Ships = new Dictionary<ShipName, Ship> ();
+	private Dictionary<ShipName, Ship> _ships = new Dictionary<ShipName, Ship>();
+	private SeaGrid _playerGrid; // = new SeaGrid (_Ships);
+	private ISeaGrid _enemyGrid;
+	private int _shots;
+	private int _hits;
+	private int _misses;
 
-    private SeaGrid _playerGrid; // = new SeaGrid (_Ships);
+	// '' <summary>
+	// '' Returns the game that the player is part of.
+	// '' </summary>
+	// '' <value>The game</value>
+	// '' <returns>The game that the player is playing</returns>
+	public BattleShipsGame Game
+	{
+		get
+		{
+			return _game;
+		}
+		set
+		{
+			_game = value;
+		}
+	}
 
-    private ISeaGrid _enemyGrid;
+	public ISeaGrid Enemy
+	{
+		set
+		{
+			_enemyGrid = value;
+		}
+	}
 
-    protected BattleShipsGame _game;
+	public Player(BattleShipsGame controller)
+	{
+		_playerGrid = new SeaGrid(_ships);
+		_game = controller;
 
-    private int _shots;
+		// for each ship add the ships name so the seagrid knows about them
+		foreach (ShipName name in Enum.GetValues(typeof(ShipName)))
+		{
+			if ((name != ShipName.None))
+			{
+				_ships.Add(name, new Ship(name));
+			}
 
-    private int _hits;
+		}
 
-    private int _misses;
+		RandomizeDeployment();
+	}
 
-    // '' <summary>
-    // '' Returns the game that the player is part of.
-    // '' </summary>
-    // '' <value>The game</value>
-    // '' <returns>The game that the player is playing</returns>
-    public BattleShipsGame Game {
-        get {
-            return _game;
-        }
-        set {
-            _game = value;
-        }
-    }
+	// '' <summary>
+	// '' The EnemyGrid is a ISeaGrid because you shouldn't be allowed to see the enemies ships
+	// '' </summary>
+	public ISeaGrid EnemyGrid
+	{
+		get
+		{
+			return _enemyGrid;
+		}
+		set
+		{
+			_enemyGrid = value;
+		}
+	}
 
-    public ISeaGrid Enemy {
-        set {
-            _enemyGrid = value;
-        }
-    }
+	public SeaGrid PlayerGrid
+	{
+		get
+		{
+			return _playerGrid;
+		}
+	}
 
-    public Player (BattleShipsGame controller)
-    {
-        _playerGrid = new SeaGrid (_Ships);
+	public bool ReadyToDeploy
+	{
+		get
+		{
+			return _playerGrid.AllDeployed;
+		}
+	}
 
-        _game = controller;
-        // for each ship add the ships name so the seagrid knows about them
-        foreach (ShipName name in Enum.GetValues (typeof (ShipName))) {
-            if ((name != ShipName.None)) {
-                _Ships.Add (name, new Ship (name));
-            }
+	public bool IsDestroyed
+	{
+		get
+		{
+			// Check if all ships are destroyed... -1 for the none ship
+			return _playerGrid.ShipsKilled == Enum.GetValues(typeof(ShipName)).Length - 1;
+		}
+	}
 
-        }
+	public Ship Ship(ShipName name)
+	{
+		if ((name == ShipName.None))
+		{
+			return null;
+		}
 
-        RandomizeDeployment ();
-    }
+		return _ships[name];
+	}
 
-    // '' <summary>
-    // '' The EnemyGrid is a ISeaGrid because you shouldn't be allowed to see the enemies ships
-    // '' </summary>
-    public ISeaGrid EnemyGrid {
-        get {
-            return _enemyGrid;
-        }
-        set {
-            _enemyGrid = value;
-        }
-    }
+	public int Shots
+	{
+		get
+		{
+			return _shots;
+		}
+	}
 
-    public SeaGrid PlayerGrid {
-        get {
-            return _playerGrid;
-        }
-    }
+	public int Hits
+	{
+		get
+		{
+			return _hits;
+		}
+	}
 
-    public bool ReadyToDeploy {
-        get {
-            return _playerGrid.AllDeployed;
-        }
-    }
+	public int Missed
+	{
+		get
+		{
+			return _misses;
+		}
+	}
 
-    public bool IsDestroyed {
-        get {
-            // Check if all ships are destroyed... -1 for the none ship
-            return _playerGrid.ShipsKilled == Enum.GetValues (typeof (ShipName)).Length - 1;
-        }
-    }
+	public int Score
+	{
+		get
+		{
+			if (IsDestroyed)
+			{
+				return 0;
+			}
+			else
+			{
+				return ((Hits * 12) - (Shots - (PlayerGrid.ShipsKilled * 20)));
+			}
+		}
+	}
 
-    public Ship Ship (ShipName name)
-    {
-        if ((name == ShipName.None)) {
-            return null;
-        }
+	public IEnumerator<Ship> GetShipEnumerator()
+	{
+		Ship[] result = new Ship[_ships.Values.Count];
+		_ships.Values.CopyTo(result, 0);
+		List<Ship> lst = new List<Ship>();
+		lst.AddRange(result);
+		return lst.GetEnumerator();
+	}
 
-        return _Ships [name];
-    }
+	// '' <summary>
+	// '' Makes it possible to enumerate over the ships the player
+	// '' has.
+	// '' </summary>
+	// '' <returns>A Ship enumerator</returns>
+	public IEnumerator GetEnumerator()
+	{
+		Ship[] result = new Ship[_ships.Values.Count];
+		_ships.Values.CopyTo(result, 0);
+		List<Ship> lst = new List<Ship>();
+		lst.AddRange(result);
+		return lst.GetEnumerator();
+	}
 
-    public int Shots {
-        get {
-            return _shots;
-        }
-    }
+	// '' <summary>
+	// '' Vitual Attack allows the player to shoot
+	// '' </summary>
+	public virtual AttackResult Attack()
+	{
+		// human does nothing here...
+		return null;
+	}
 
-    public int Hits {
-        get {
-            return _hits;
-        }
-    }
+	// '' <summary>
+	// '' Shoot at a given row/column
+	// '' </summary>
+	// '' <param name="row">the row to attack</param>
+	// '' <param name="col">the column to attack</param>
+	// '' <returns>the result of the attack</returns>
+	internal AttackResult Shoot(int row, int col)
+	{
+		_shots++;
+		AttackResult result = EnemyGrid.HitTile(row, col);
+		switch (result.Value)
+		{
+			case ResultOfAttack.Destroyed:
+			case ResultOfAttack.Hit:
+				_hits++;
+				break;
+			case ResultOfAttack.Miss:
+				_misses++;
+				break;
+		}
+		return result;
+	}
 
-    public int Missed {
-        get {
-            return _misses;
-        }
-    }
+	public void RandomizeDeployment()
+	{
+		bool placementSuccessful;
+		Direction heading;
 
-    public int Score {
-        get {
-            if (IsDestroyed) {
-                return 0;
-            } else {
-                return ((Hits * 12) - (Shots - (PlayerGrid.ShipsKilled * 20)));
-            }
-        }
-    }
+		// for each ship to deploy in shipist
+		foreach (ShipName shipToPlace in Enum.GetValues(typeof(ShipName)))
+		{
+			if ((shipToPlace == ShipName.None))
+			{
+				continue;
+			}
 
-    public IEnumerator<Ship> GetShipEnumerator ()
-    {
-        Ship [] result = new Ship [_Ships.Values.Count];
-        _Ships.Values.CopyTo (result, 0);
-        List<Ship> lst = new List<Ship> ();
-        lst.AddRange (result);
-        return lst.GetEnumerator ();
-    }
+			placementSuccessful = false;
+			while (!placementSuccessful)
+			{
+				int dir = _random.Next(2);
+				int x = _random.Next(0, 11);
+				int y = _random.Next(0, 11);
+				if ((dir == 0))
+				{
+					heading = Direction.UpDown;
+				}
+				else
+				{
+					heading = Direction.LeftRight;
+				}
 
-    // '' <summary>
-    // '' Makes it possible to enumerate over the ships the player
-    // '' has.
-    // '' </summary>
-    // '' <returns>A Ship enumerator</returns>
-    public IEnumerator GetEnumerator ()
-    {
-        Ship [] result = new Ship [_Ships.Values.Count];
-        _Ships.Values.CopyTo (result, 0);
-        List<Ship> lst = new List<Ship> ();
-        lst.AddRange (result);
-        return lst.GetEnumerator ();
-    }
+				// try to place ship, if position unplaceable, generate new coordinates
+				try
+				{
+					PlayerGrid.MoveShip(x, y, shipToPlace, heading);
+					placementSuccessful = true;
+				}
+				catch
+				{
+					placementSuccessful = false;
+				}
+			}
 
-    // '' <summary>
-    // '' Vitual Attack allows the player to shoot
-    // '' </summary>
-    public virtual AttackResult Attack ()
-    {
-        // human does nothing here...
-        return null;
-    }
-
-    // '' <summary>
-    // '' Shoot at a given row/column
-    // '' </summary>
-    // '' <param name="row">the row to attack</param>
-    // '' <param name="col">the column to attack</param>
-    // '' <returns>the result of the attack</returns>
-    internal AttackResult Shoot (int row, int col)
-    {
-        _shots++;
-        AttackResult result = EnemyGrid.HitTile (row, col);
-        switch (result.Value) {
-        case ResultOfAttack.Destroyed:
-        case ResultOfAttack.Hit:
-            _hits++;
-            break;
-        case ResultOfAttack.Miss:
-            _misses++;
-            break;
-        }
-        return result;
-    }
-
-    public virtual void RandomizeDeployment ()
-    {
-        bool placementSuccessful;
-        Direction heading;
-        // for each ship to deploy in shipist
-        foreach (ShipName shipToPlace in Enum.GetValues (typeof (ShipName))) {
-            if ((shipToPlace == ShipName.None)) {
-                continue;
-            }
-
-            placementSuccessful = false;
-            while (!placementSuccessful) {
-                int dir = _Random.Next (2);
-                int x = _Random.Next (0, 11);
-                int y = _Random.Next (0, 11);
-                if ((dir == 0)) {
-                    heading = Direction.UpDown;
-                } else {
-                    heading = Direction.LeftRight;
-                }
-
-                // try to place ship, if position unplaceable, generate new coordinates
-                try {
-                    PlayerGrid.MoveShip (x, y, shipToPlace, heading);
-                    placementSuccessful = true;
-                } catch {
-                    placementSuccessful = false;
-                }
-            }
-
-        }
-    }
+		}
+	}
 
 }
