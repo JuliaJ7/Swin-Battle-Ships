@@ -7,9 +7,8 @@ using System.Collections.Generic;
 // '' managing user input, and displaying the current state of the
 // '' game.
 // '' </summary>
-public class GameController
+public static class GameController
 {
-
     private static BattleShipsGame _theGame;
 
     private static Player _human;
@@ -44,7 +43,7 @@ public class GameController
         }
     }
 
-    public GameController ()
+    public static void Init ()
     {
         // bottom state will be quitting. If player exits main menu then the game is over
         _state.Push (GameState.Quitting);
@@ -78,8 +77,13 @@ public class GameController
             break;
         }
         _human = new Player (_theGame);
-        // AddHandler _human.PlayerGrid.Changed, AddressOf GridChanged
+        
+        // NOTE(Xavier): Should these be moved earlier???
+        // Because they are not set, when they are called earlier
+        // a crash occurs.
+        _human.PlayerGrid.Changed += new EventHandler(GridChanged);
         _ai.PlayerGrid.Changed += new EventHandler (GridChanged);
+
         _theGame.AttackCompleted += new BattleShipsGame.AttackCompletedHandler (AttackCompleted);
         AddNewState (GameState.Deploying);
     }
@@ -100,7 +104,7 @@ public class GameController
     // '' </summary>
     // '' <param name="sender">the grid that changed</param>
     // '' <param name="args">not used</param>
-    private static void GridChanged (object sender, EventArgs args)
+    public static void GridChanged (object sender, EventArgs args)
     {
         GameController.DrawScreen ();
         SwinGame.RefreshScreen ();
@@ -153,7 +157,8 @@ public class GameController
             PlayHitSequence (result.Row, result.Column, isHuman);
             Audio.PlaySoundEffect (GameResources.GameSound ("Sink"));
             while (Audio.SoundEffectPlaying (GameResources.GameSound ("Sink"))) {
-                SwinGame.Delay (10);
+                // NOTE(Xavier): Delay removed to speed up debugging 
+                // SwinGame.Delay (10);
                 SwinGame.RefreshScreen ();
             }
 

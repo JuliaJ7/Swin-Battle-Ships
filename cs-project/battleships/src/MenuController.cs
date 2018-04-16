@@ -6,9 +6,8 @@ using System;
 // '' from the menus in the game. These include the main menu, game
 // '' menu and the settings m,enu.
 // '' </summary>
-class MenuController
+public static class MenuController
 {
-
     private static string [][] _menuStructure = new string[][] {
         new string[] {"PLAY", "SETUP", "SCORES", "QUIT"},
         new string[] {"RETURN", "SURRENDER", "QUIT"},
@@ -192,7 +191,7 @@ class MenuController
             toDraw.Height = BUTTON_HEIGHT;
 
 
-            // TODO(Xavier): This does not work so DrawText is being used instead temporarily.
+            // TODO(Xavier): DrawTextLines
             // SwinGame.DrawTextLines (_menuStructure [menu] [i], MENU_COLOR, Color.Black, GameResources.GameFont ("Menu"), FontAlignment.AlignCenter, toDraw);
             SwinGame.DrawText (_menuStructure [menu] [i], Color.White, btnLeft, btnTop);
 

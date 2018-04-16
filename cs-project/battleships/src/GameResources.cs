@@ -130,19 +130,24 @@ public static class GameResources
         ShowLoadingScreen ();
         ShowMessage ("Loading fonts...", 0);
         LoadFonts ();
-        SwinGame.Delay (100);
+        // NOTE(Xavier): Delay removed to speed up debugging 
+        //SwinGame.Delay (100);
         ShowMessage ("Loading images...", 1);
         LoadImages ();
-        SwinGame.Delay (100);
+        // NOTE(Xavier): Delay removed to speed up debugging 
+        //SwinGame.Delay (100);
         ShowMessage ("Loading sounds...", 2);
         LoadSounds ();
-        SwinGame.Delay (100);
+        // NOTE(Xavier): Delay removed to speed up debugging 
+        //SwinGame.Delay (100);
         ShowMessage ("Loading music...", 3);
         LoadMusic ();
-        SwinGame.Delay (100);
-        SwinGame.Delay (100);
+        // NOTE(Xavier): Delay removed to speed up debugging 
+        //SwinGame.Delay (100);
+        //SwinGame.Delay (100);
         ShowMessage ("Game loaded...", 5);
-        SwinGame.Delay (100);
+        // NOTE(Xavier): Delay removed to speed up debugging 
+        //SwinGame.Delay (100);
         EndLoadingScreen (width, height);
     }
 
@@ -164,16 +169,18 @@ public static class GameResources
     {
         const int ANI_CELL_COUNT = 11;
         Audio.PlaySoundEffect (_StartSound);
-        SwinGame.Delay (200);
+        // NOTE(Xavier): Delay removed to speed up debugging 
+        //SwinGame.Delay (200);
         int i;
         for (i = 0; (i <= (ANI_CELL_COUNT - 1)); i++) {
             SwinGame.DrawBitmap (_Background, 0, 0);
-            SwinGame.Delay (20);
+            //SwinGame.Delay (20);
             SwinGame.RefreshScreen ();
             SwinGame.ProcessEvents ();
         }
 
-        SwinGame.Delay (1500);
+        // NOTE(Xavier): Delay removed to speed up debugging 
+        //SwinGame.Delay (1500);
     }
 
     private static void ShowMessage (string message, int number)
@@ -183,23 +190,28 @@ public static class GameResources
         const int TY = 493;
         const int TW = 200;
         const int TH = 25;
-        //TODO(Xavier): const int STEPS = 5;
+        // TODO(Xavier): Is this needed??
+        // const int STEPS = 5;
         const int BG_X = 279;
-
-        //TODO(Xavier): int fullW = (260 * number) / STEPS;
-        Rectangle toDraw = new Rectangle ();
 
         SwinGame.DrawBitmap (_LoaderEmpty, BG_X, BG_Y);
         SwinGame.DrawCell (_LoaderFull, 0, BG_X, BG_Y);
-        //  SwinGame.DrawBitmapPart(_LoaderFull, 0, 0, fullW, 66, BG_X, BG_Y)
+        // TODO(Xavier): This is not supported, find alternative
+        // int fullW = (260 * number) / STEPS;
+        // SwinGame.DrawBitmapPart(_LoaderFull, 0, 0, fullW, 66, BG_X, BG_Y)
 
+        Rectangle toDraw = new Rectangle ();
         toDraw.X = TX;
         toDraw.Y = TY;
         toDraw.Width = TW;
         toDraw.Height = TH;
 
-        // TODO(Xavier): SwinGame.DrawTextLines (message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, toDraw);
-        //  SwinGame.DrawTextLines(message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, TX, TY, TW, TH)
+        // TODO(Xavier): DrawTextLines
+        // SwinGame.DrawTextLines (message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, toDraw);
+        // SwinGame.DrawTextLines(message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, TX, TY, TW, TH)
+        SwinGame.DrawText (message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, toDraw);
+        SwinGame.DrawText (message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, toDraw);
+
         SwinGame.RefreshScreen ();
         SwinGame.ProcessEvents ();
     }
@@ -207,7 +219,8 @@ public static class GameResources
     private static void EndLoadingScreen (int width, int height)
     {
         SwinGame.ProcessEvents ();
-        SwinGame.Delay (500);
+        // NOTE(Xavier): Delay removed to speed up debugging 
+        //SwinGame.Delay (500);
         SwinGame.ClearScreen ();
         SwinGame.RefreshScreen ();
         SwinGame.FreeFont (_LoadingFont);

@@ -17,6 +17,8 @@ public class SeaGridAdapter : ISeaGrid
     {
         _MyGrid = grid;
         _MyGrid.Changed += new EventHandler (MyGrid_Changed);
+
+        Changed += new EventHandler(GameController.GridChanged);
     }
 
     // '' <summary>
