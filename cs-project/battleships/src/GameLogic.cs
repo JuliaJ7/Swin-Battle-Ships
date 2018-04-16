@@ -16,7 +16,7 @@ public static class GameLogic
 		GameController.Init();
 
 		// Game Loop:
-		while ((SwinGame.WindowCloseRequested() == true) || (GameController.CurrentState == GameState.Quitting) == false)
+		while (!SwinGame.WindowCloseRequested() && !(GameController.CurrentState == GameState.Quitting))
 		{
 			GameController.HandleUserInput();
 			GameController.DrawScreen();
