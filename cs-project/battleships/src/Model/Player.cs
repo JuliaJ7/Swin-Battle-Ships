@@ -18,6 +18,19 @@ public class Player : IEnumerable
 	private int _hits;
 	private int _misses;
 
+	public virtual void Reset()
+	{
+		_shots = 0;
+		_hits = 0;
+		_misses = 0;
+		foreach (KeyValuePair<ShipName, Ship> s in _ships)
+		{
+			s.Value.Reset();
+		}
+
+		_playerGrid.Reset();
+	}
+
 	// '' <summary>
 	// '' Returns the game that the player is part of.
 	// '' </summary>

@@ -24,6 +24,11 @@ public static class DiscoveryController
 		{
 			DoAttack();
 		}
+
+		if (SwinGame.KeyDown(KeyCode.RKey)) {
+			GameController.HumanPlayer.Reset();
+			GameController.ComputerPlayer.Reset();
+		}
 	}
 
 	// '' <summary>

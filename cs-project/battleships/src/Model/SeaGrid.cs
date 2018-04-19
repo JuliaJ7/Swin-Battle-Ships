@@ -18,6 +18,22 @@ public class SeaGrid : ISeaGrid
 	private Dictionary<ShipName, Ship> _ships;
 	private int _shipsKilled;
 
+	public void Reset()
+	{
+		_shipsKilled = 0;
+		foreach (KeyValuePair<ShipName, Ship> s in _ships)
+		{
+			s.Value.Reset();
+		}
+		for (int i = 0; (i <= (Width - 1)); i++)
+		{
+			for (int j = 0; (j <= (Height - 1)); j++)
+			{
+				_gameTiles[i, j].Shot = false;
+			}
+		}
+	}
+
 	// '' <summary>
 	// '' The sea grid has changed and should be redrawn.
 	// '' </summary>

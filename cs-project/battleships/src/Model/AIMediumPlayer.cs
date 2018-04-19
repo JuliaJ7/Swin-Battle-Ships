@@ -25,6 +25,13 @@ public class AIMediumPlayer : AIPlayer
 	{
 	}
 
+	public override void Reset()
+	{
+		base.Reset();
+		_currentState = AIStates.Searching;
+		_targets = new Stack<Location>();
+	}
+
 	// '' <summary>
 	// '' GenerateCoordinates should generate random shooting coordinates
 	// '' only when it has not found a ship, or has destroyed a ship and 

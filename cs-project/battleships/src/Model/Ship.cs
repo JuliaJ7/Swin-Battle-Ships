@@ -18,6 +18,15 @@ public class Ship
 	private int _col;
 	private Direction _direction;
 
+	public void Reset()
+	{
+		_hitsTaken = 0;
+		foreach(Tile t in _tiles)
+		{
+			t.Shot = false;
+		}
+	}
+
 	// '' <summary>
 	// '' The type of ship
 	// '' </summary>
