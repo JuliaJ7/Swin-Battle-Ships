@@ -58,7 +58,7 @@ public class Tile
 			}
 			else
 			{
-				throw new InvalidOperationException(("There is already a ship at [" + (Row + (", " + (Column + "]")))));
+				throw new InvalidOperationException(("There is already a ship at [" + (Row+1 + (", " + (Column+1 + "]")))));
 			}
 
 		}
