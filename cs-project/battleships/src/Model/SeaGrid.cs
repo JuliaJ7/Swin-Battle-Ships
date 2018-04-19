@@ -103,21 +103,8 @@ public class SeaGrid : ISeaGrid
 	public void MoveShip(int row, int col, ShipName ship, Direction direction)
 	{
 		Ship newShip = _ships[ship];
-
-		int oldColumn = newShip.Column;
-		int oldRow = newShip.Row;
-
-		newShip.Remove();
-
-		try
-		{
-			AddShip(row, col, direction, newShip);
-		}
-		catch
-		{
-			AddShip(oldRow, oldColumn, direction, newShip);
-			throw;
-		}
+		//newShip.Remove();
+		AddShip(row, col, direction, newShip);
 	}
 
 	// '' <summary>
@@ -155,6 +142,27 @@ public class SeaGrid : ISeaGrid
 				{
 					throw new InvalidOperationException("Ship can\'t fit on the board");
 				}
+
+				if (_gameTiles[currentRow, currentCol].Ship != null && _gameTiles[currentRow, currentCol].Ship != newShip)
+				{
+					throw new InvalidOperationException("Ships can\'t overlap");
+				}
+
+				currentCol = (currentCol + dCol);
+				currentRow = (currentRow + dRow);
+
+				//_gameTiles[currentRow, currentCol].Ship = newShip;
+				//currentCol = (currentCol + dCol);
+				//currentRow = (currentRow + dRow);
+			}
+
+			newShip.Remove();
+
+			currentRow = row;
+			currentCol = col;
+
+			for (int i = 0; (i <= (size - 1)); i++)
+			{
 				_gameTiles[currentRow, currentCol].Ship = newShip;
 				currentCol = (currentCol + dCol);
 				currentRow = (currentRow + dRow);
@@ -164,8 +172,8 @@ public class SeaGrid : ISeaGrid
 		}
 		catch (Exception e)
 		{
-			newShip.Remove();
 			// if fails remove the ship
+			//newShip.Remove();
 			throw new ApplicationException(e.Message);
 		}
 		finally

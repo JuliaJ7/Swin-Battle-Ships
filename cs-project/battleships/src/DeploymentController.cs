@@ -109,6 +109,7 @@ public static class DeploymentController
 				try
 				{
 					GameController.HumanPlayer.PlayerGrid.MoveShip(row, col, _selectedShip, _currentDirection);
+					UtilityFunctions.Message = "";
 				}
 				catch (Exception ex)
 				{

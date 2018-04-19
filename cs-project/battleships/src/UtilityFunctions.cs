@@ -265,7 +265,7 @@ public static class UtilityFunctions
 				SwinGame.ClearScreen();
 				break;
 		}
-		SwinGame.DrawFramerate(675, 585);
+		SwinGame.DrawFramerate(600, 585);
 	}
 
 	public static void AddExplosion(int row, int col)
