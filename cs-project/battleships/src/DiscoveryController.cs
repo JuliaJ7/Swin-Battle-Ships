@@ -64,6 +64,16 @@ public static class DiscoveryController
 			UtilityFunctions.DrawField(GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, false);
 		}
 
+		bool isHuman = (GameController.Game.Player == GameController.HumanPlayer);
+		if (isHuman)
+		{
+			SwinGame.DrawText("Your Turn", Color.White, GameResources.GameFont("Courier"), UtilityFunctions.FIELD_LEFT, UtilityFunctions.FIELD_TOP - 30);
+		}
+		else
+		{
+			SwinGame.DrawText("AI Turn", Color.White, GameResources.GameFont("Courier"), UtilityFunctions.FIELD_LEFT, UtilityFunctions.FIELD_TOP - 30);
+		}
+
 		UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
 		UtilityFunctions.DrawMessage();
 		SwinGame.DrawText(GameController.HumanPlayer.Shots.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SHOTS_TOP);

@@ -103,7 +103,6 @@ public class SeaGrid : ISeaGrid
 	public void MoveShip(int row, int col, ShipName ship, Direction direction)
 	{
 		Ship newShip = _ships[ship];
-		//newShip.Remove();
 		AddShip(row, col, direction, newShip);
 	}
 
@@ -150,10 +149,6 @@ public class SeaGrid : ISeaGrid
 
 				currentCol = (currentCol + dCol);
 				currentRow = (currentRow + dRow);
-
-				//_gameTiles[currentRow, currentCol].Ship = newShip;
-				//currentCol = (currentCol + dCol);
-				//currentRow = (currentRow + dRow);
 			}
 
 			newShip.Remove();

@@ -29,6 +29,14 @@ public static class GameController
 		}
 	}
 
+	public static BattleShipsGame Game
+	{
+		get
+		{
+			return _theGame;
+		}
+	}
+
 	public static Player HumanPlayer
 	{
 		get
@@ -149,8 +157,7 @@ public static class GameController
 	// '' </remarks>
 	private static void AttackCompleted(object sender, AttackResult result)
 	{
-		bool isHuman;
-		isHuman = (_theGame.Player == HumanPlayer);
+		bool isHuman = (_theGame.Player == HumanPlayer);
 		if (isHuman)
 		{
 			UtilityFunctions.Message = ("You " + result.ToString());
