@@ -24,8 +24,6 @@ public static class EndingGameController
 			whatShouldIPrint = "-- WINNER --";
 		}
 
-		// TODO(Xavier): DrawTextLines
-		// SwinGame.DrawTextLines (whatShouldIPrint, Color.White, Color.Transparent, GameResources.GameFont ("ArialLarge"), FontAlignment.AlignCenter, toDraw);
 		Rectangle toDraw = new Rectangle();
 		toDraw.X = 0;
 		toDraw.Y = 250;

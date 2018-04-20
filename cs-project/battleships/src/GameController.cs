@@ -95,9 +95,6 @@ public static class GameController
 				break;
 		}
 
-		// NOTE(Xavier): Should these be moved earlier???
-		// Because they are not set, when they are called earlier
-		// a crash occurs.
 		_human.PlayerGrid.Changed += new EventHandler(GridChanged);
 		_ai.PlayerGrid.Changed += new EventHandler(GridChanged);
 
@@ -109,7 +106,6 @@ public static class GameController
 	// '' </summary>
 	private static void EndGame()
 	{
-		// RemoveHandler _human.PlayerGrid.Changed, AddressOf GridChanged
 		_ai.PlayerGrid.Changed -= GridChanged;
 		_theGame.AttackCompleted -= AttackCompleted;
 	}
@@ -179,8 +175,7 @@ public static class GameController
 				Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
 				while (Audio.SoundEffectPlaying(GameResources.GameSound("Sink")))
 				{
-					// NOTE(Xavier): Delay removed to speed up debugging 
-					// SwinGame.Delay (10);
+					SwinGame.Delay (10);
 					SwinGame.RefreshScreen();
 				}
 
