@@ -3,7 +3,6 @@ using System;
 
 public static class GameLogic
 {
-
 	public static void Main()
 	{
 		// Opens a new Graphics Window:
@@ -15,7 +14,7 @@ public static class GameLogic
 
 		GameController.Init();
 
-		// Game Loop:
+		// Main Game Loop:
 		while (!SwinGame.WindowCloseRequested() && !(GameController.CurrentState == GameState.Quitting))
 		{
 			GameController.HandleUserInput();

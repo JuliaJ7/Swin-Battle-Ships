@@ -21,6 +21,7 @@ public static class GameController
 	// '' </summary>
 	// '' <value>The current state</value>
 	// '' <returns>The current state</returns>
+	// properties
 	public static GameState CurrentState
 	{
 		get
@@ -311,7 +312,7 @@ public static class GameController
 		}
 		UtilityFunctions.UpdateAnimations();
 	}
-
+	
 	// '' <summary>
 	// '' Draws the current state of the game to the screen.
 	// '' </summary>

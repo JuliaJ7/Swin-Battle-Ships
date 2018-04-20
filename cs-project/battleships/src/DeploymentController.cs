@@ -7,6 +7,8 @@ using System;
 // '' </summary>
 public static class DeploymentController
 {
+	// ships positioning support
+	// ships and text drawing support
 	private const int SHIPS_TOP = 98;
 	private const int SHIPS_LEFT = 20;
 	private const int SHIPS_HEIGHT = 90;

@@ -4,6 +4,8 @@ using System;
 
 public static class GameResources
 {
+	// game resources support
+	// dictionaries to store images, fonts, sounds and music
 	private static Dictionary<string, Bitmap> _images = new Dictionary<string, Bitmap>();
 	private static Dictionary<string, Font> _fonts = new Dictionary<string, Font>();
 	private static Dictionary<string, SoundEffect> _sounds = new Dictionary<string, SoundEffect>();
@@ -17,6 +19,7 @@ public static class GameResources
 
 	private static void LoadFonts()
 	{
+		// Fonts:
 		NewFont("ArialLarge", "arial.ttf", 80);
 		NewFont("Courier", "cour.ttf", 14);
 		NewFont("CourierSmall", "cour.ttf", 8);
@@ -51,6 +54,7 @@ public static class GameResources
 
 	private static void LoadSounds()
 	{
+		// Sounds:
 		NewSound("Error", "error.wav");
 		NewSound("Hit", "hit.wav");
 		NewSound("Sink", "sink.wav");

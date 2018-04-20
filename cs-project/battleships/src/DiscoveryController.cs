@@ -55,6 +55,7 @@ public static class DiscoveryController
 	// '' </summary>s
 	public static void DrawDiscovery()
 	{
+		//drawing support
 		const int SCORES_LEFT = 172;
 		const int SHOTS_TOP = 157;
 		const int HITS_TOP = 206;
