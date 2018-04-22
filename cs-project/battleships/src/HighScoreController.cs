@@ -11,7 +11,7 @@ using System;
 // '' </remarks>
 public static class HighScoreController
 {
-	private const int NAME_WIDTH = 5;
+	private const int NAME_WIDTH = 8;
 	private const int SCORES_LEFT = 490;
 
 	// '' <summary>
