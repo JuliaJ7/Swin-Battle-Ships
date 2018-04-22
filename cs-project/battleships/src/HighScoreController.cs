@@ -176,7 +176,7 @@ public static class HighScoreController
 			s.Name = SwinGame.TextReadAsASCII();
 			if ((s.Name.Length < NAME_WIDTH))
 			{
-				s.Name = (s.Name + new string(' ', 3 - s.Name.Length));
+				s.Name = (s.Name + new string(' ', NAME_WIDTH - s.Name.Length));
 			}
 
 			_scores.RemoveAt((_scores.Count - 1));
