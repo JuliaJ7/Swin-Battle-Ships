@@ -174,7 +174,7 @@ public static class HighScoreController
 			}
 
 			s.Name = SwinGame.TextReadAsASCII();
-			if ((s.Name.Length < 3))
+			if ((s.Name.Length < NAME_WIDTH))
 			{
 				s.Name = (s.Name + new string(' ', 3 - s.Name.Length));
 			}
