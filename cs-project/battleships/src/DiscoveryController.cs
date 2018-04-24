@@ -25,6 +25,7 @@ public static class DiscoveryController
 			DoAttack();
 		}
 
+		// Check when pressing "R" it reset the human player and the computer player
 		if (SwinGame.KeyDown(KeyCode.RKey)) {
 			GameController.HumanPlayer.Reset();
 			GameController.ComputerPlayer.Reset();
@@ -61,6 +62,7 @@ public static class DiscoveryController
 		const int HITS_TOP = 206;
 		const int SPLASH_TOP = 256;
 
+		// Check when "Left Shift" or "Right Shift" and "C" are pressed so it draws the field
 		if ((SwinGame.KeyDown(KeyCode.LeftShiftKey) || SwinGame.KeyDown(KeyCode.RightShiftKey)) && SwinGame.KeyDown(KeyCode.CKey))
 		{
 			UtilityFunctions.DrawField(GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, true);
