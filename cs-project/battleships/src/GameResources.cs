@@ -141,6 +141,7 @@ public static class GameResources
 		EndLoadingScreen(width, height);
 	}
 
+	// Show loading screen for the player (intro)
 	private static void ShowLoadingScreen()
 	{
 		_background = SwinGame.LoadBitmap(SwinGame.PathToResource("SplashBack.png", ResourceKind.BitmapResource));
@@ -174,6 +175,7 @@ public static class GameResources
 		SwinGame.Delay (1500);
 	}
 
+	// 
 	private static void ShowMessage(string message, int number)
 	{
 		const int BG_Y = 453;
@@ -205,6 +207,7 @@ public static class GameResources
 		SwinGame.ProcessEvents();
 	}
 
+	// Clear loading screen
 	private static void EndLoadingScreen(int width, int height)
 	{
 		SwinGame.ProcessEvents();
@@ -224,31 +227,32 @@ public static class GameResources
 		SwinGame.ChangeScreenSize(width, height);
 	}
 
+	// Add new font from resources
 	private static void NewFont(string fontName, string filename, int size)
 	{
 		_fonts.Add(fontName, SwinGame.LoadFont(SwinGame.PathToResource(filename, ResourceKind.FontResource), size));
 	}
-
+	// Add new image from resources
 	private static void NewImage(string imageName, string filename)
 	{
 		_images.Add(imageName, SwinGame.LoadBitmap(SwinGame.PathToResource(filename, ResourceKind.BitmapResource)));
 	}
-
+	// Add new transparent color image from resources
 	private static void NewTransparentColorImage(string imageName, string fileName, Color transColor)
 	{
 		_images.Add(imageName, SwinGame.LoadBitmap(SwinGame.PathToResource(fileName, ResourceKind.BitmapResource)));
 	}
-
+	// Add new image from resources
 	private static void NewTransparentColourImage(string imageName, string fileName, Color transColor)
 	{
 		NewTransparentColorImage(imageName, fileName, transColor);
 	}
-
+	// Add new sound from resources
 	private static void NewSound(string soundName, string filename)
 	{
 		_sounds.Add(soundName, Audio.LoadSoundEffect(SwinGame.PathToResource(filename, ResourceKind.SoundResource)));
 	}
-
+	// Add new music from resources
 	private static void NewMusic(string musicName, string filename)
 	{
 		_music.Add(musicName, Audio.LoadMusic(SwinGame.PathToResource(filename, ResourceKind.SoundResource)));
