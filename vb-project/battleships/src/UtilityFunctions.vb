@@ -1,5 +1,5 @@
 ''' <summary>
-''' This includes a number of utility methods for
+''' This includes number of utility methods for
 ''' drawing and interacting with the Mouse.
 ''' </summary>
 Module UtilityFunctions
