@@ -22,6 +22,7 @@ public class AttackResult
 		}
 	}
 
+	// Get the ship value
 	public Ship Ship
 	{
 		get
@@ -30,6 +31,7 @@ public class AttackResult
 		}
 	}
 
+	// Get the text value
 	public string Text
 	{
 		get
@@ -38,6 +40,7 @@ public class AttackResult
 		}
 	}
 
+	// Get the row value
 	public int Row
 	{
 		get
@@ -46,6 +49,7 @@ public class AttackResult
 		}
 	}
 
+	// Get the column value
 	public int Column
 	{
 		get
@@ -54,6 +58,7 @@ public class AttackResult
 		}
 	}
 
+	// Get the attack row, col and result if it is success or not
 	public AttackResult(ResultOfAttack value, string text, int row, int column)
 	{
 		_value = value;

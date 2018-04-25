@@ -52,7 +52,7 @@ public static class DeploymentController
 		{
 			_currentDirection = Direction.LeftRight;
 		}
-
+		// Deply the ships randomly
 		if (SwinGame.KeyTyped(KeyCode.RKey))
 		{
 			GameController.HumanPlayer.RandomizeDeployment();
