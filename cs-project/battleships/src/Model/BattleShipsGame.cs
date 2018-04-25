@@ -80,7 +80,6 @@ public class BattleShipsGame
 			newAttack = new AttackResult(ResultOfAttack.GameOver, newAttack.Ship, newAttack.Text, row, col);
 		}
 
-
 		AttackCompleted(this, newAttack);
 
 		// change player if the last hit was a miss

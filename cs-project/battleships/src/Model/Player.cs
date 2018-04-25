@@ -18,6 +18,7 @@ public class Player : IEnumerable
 	private int _hits;
 	private int _misses;
 
+	// Reset the values of the objects
 	public virtual void Reset()
 	{
 		_shots = 0;
@@ -152,6 +153,7 @@ public class Player : IEnumerable
 	{
 		get
 		{
+			// Check destroying to update the score
 			if (IsDestroyed)
 			{
 				return 0;
