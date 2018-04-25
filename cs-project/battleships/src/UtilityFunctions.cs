@@ -236,6 +236,7 @@ public static class UtilityFunctions
 		}
 	}
 
+	// Show message to the player
 	public static void DrawMessage()
 	{
 		SwinGame.DrawText(Message, MESSAGE_COLOR, GameResources.GameFont("Courier"), FIELD_LEFT, MESSAGE_TOP);
@@ -295,6 +296,7 @@ public static class UtilityFunctions
 		_animations.Add(s);
 	}
 
+	// Update the current animation
 	public static void UpdateAnimations()
 	{
 		List<Sprite> ended = new List<Sprite>();
@@ -314,6 +316,7 @@ public static class UtilityFunctions
 		}
 	}
 
+	// Draw animations through the loop
 	public static void DrawAnimations()
 	{
 		foreach (Sprite s in _animations)
@@ -322,6 +325,7 @@ public static class UtilityFunctions
 		}
 	}
 
+	// Draw animations sequence through the loop
 	public static void DrawAnimationSequence()
 	{
 		for (int i = 1; (i <= (ANIMATION_CELLS * FRAMES_PER_CELL)); i++)
