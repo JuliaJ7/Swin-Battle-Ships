@@ -77,6 +77,7 @@ public class SeaGridAdapter : ISeaGrid
 		}
 	}
 
+	// Return the attacked tile result form its row and column
 	public AttackResult HitTile(int row, int col)
 	{
 		return _myGrid.HitTile(row, col);

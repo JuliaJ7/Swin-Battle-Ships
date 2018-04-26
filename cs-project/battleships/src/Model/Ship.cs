@@ -45,6 +45,7 @@ public class Ship
 		}
 	}
 
+	// Get the size of ship
 	public int Size
 	{
 		get
@@ -53,6 +54,7 @@ public class Ship
 		}
 	}
 
+	// Get the hits on ship
 	public int Hits
 	{
 		get
@@ -61,6 +63,7 @@ public class Ship
 		}
 	}
 
+	// Get the row of ship
 	public int Row
 	{
 		get
@@ -69,6 +72,7 @@ public class Ship
 		}
 	}
 
+	// Get the column of ship
 	public int Column
 	{
 		get
@@ -77,6 +81,7 @@ public class Ship
 		}
 	}
 
+	// Get the direction of ship
 	public Direction Direction
 	{
 		get

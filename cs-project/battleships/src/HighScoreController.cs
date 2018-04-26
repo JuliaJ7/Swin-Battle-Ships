@@ -73,7 +73,6 @@ public static class HighScoreController
 	// '' The format is
 	// '' # of scores
 	// '' NNNSSS
-	// '' 
 	// '' Where NNN is the name and SSS is the score
 	// '' </remarks>
 	private static void SaveScores()
@@ -173,6 +172,7 @@ public static class HighScoreController
 				SwinGame.RefreshScreen();
 			}
 
+			// Set the name length to 3 characters
 			s.Name = SwinGame.TextReadAsASCII();
 			if ((s.Name.Length < 3))
 			{

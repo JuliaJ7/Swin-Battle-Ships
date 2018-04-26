@@ -18,6 +18,7 @@ public class SeaGrid : ISeaGrid
 	private Dictionary<ShipName, Ship> _ships;
 	private int _shipsKilled;
 
+	// Resetting the ships value
 	public void Reset()
 	{
 		_shipsKilled = 0;

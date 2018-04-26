@@ -37,6 +37,7 @@ public static class DeploymentController
 	// '' </remarks>
 	public static void HandleDeploymentInput()
 	{
+		// Show the game menu when pressing "ESC"
 		if (SwinGame.KeyTyped(KeyCode.EscapeKey))
 		{
 			GameController.AddNewState(GameState.ViewingGameMenu);
@@ -51,7 +52,7 @@ public static class DeploymentController
 		{
 			_currentDirection = Direction.LeftRight;
 		}
-
+		// Deply the ships randomly
 		if (SwinGame.KeyTyped(KeyCode.RKey))
 		{
 			GameController.HumanPlayer.RandomizeDeployment();
@@ -140,7 +141,7 @@ public static class DeploymentController
 			SwinGame.DrawBitmap(GameResources.GameImage("UpDownButton"), LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP);
 		}
 
-		// DrawShips
+		// Draw ships depend on the selection
 		foreach (ShipName sn in Enum.GetValues(typeof(ShipName)))
 		{
 			int i = (int)(sn) - 1;

@@ -14,6 +14,7 @@ public static class EndingGameController
 		UtilityFunctions.DrawField(GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
 		UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
 
+		// A pop-up message for the player tells them if they win or lose the game
 		string whatShouldIPrint;
 		if (GameController.HumanPlayer.IsDestroyed)
 		{

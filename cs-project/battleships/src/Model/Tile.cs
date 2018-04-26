@@ -116,6 +116,7 @@ public class Tile
 		}
 	}
 
+	// Assign if the ship hit or not
 	internal void Shoot()
 	{
 		if (false == Shot)

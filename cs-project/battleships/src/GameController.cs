@@ -30,6 +30,7 @@ public static class GameController
 		}
 	}
 
+	// Get the game
 	public static BattleShipsGame Game
 	{
 		get
@@ -38,6 +39,7 @@ public static class GameController
 		}
 	}
 
+	// Get the human player
 	public static Player HumanPlayer
 	{
 		get
@@ -46,6 +48,7 @@ public static class GameController
 		}
 	}
 
+	// Get the computer player
 	public static Player ComputerPlayer
 	{
 		get
@@ -70,6 +73,7 @@ public static class GameController
 	// '' </remarks>
 	public static void StartGame()
 	{
+		// If the game variable is not null the game will be end
 		if (_theGame != null)
 		{
 			EndGame();
@@ -81,7 +85,7 @@ public static class GameController
 
 		_human = new Player(_theGame);
 
-		// create the players
+		// Create the players
 		switch (_aiSetting)
 		{
 			case AIOption.Medium:
@@ -124,6 +128,7 @@ public static class GameController
 
 	private static void PlayHitSequence(int row, int column, bool showAnimation)
 	{
+		// Check if there is a hit to show an explosion
 		if (showAnimation)
 		{
 			UtilityFunctions.AddExplosion(row, column);
@@ -135,6 +140,7 @@ public static class GameController
 
 	private static void PlayMissSequence(int row, int column, bool showAnimation)
 	{
+		// Check if there is a hit to play a splash
 		if (showAnimation)
 		{
 			UtilityFunctions.AddSplash(row, column);
