@@ -25,8 +25,16 @@ public static class DiscoveryController
 			DoAttack();
 		}
 
-		// Check when pressing "R" it reset the human player and the computer player
-		if (SwinGame.KeyDown(KeyCode.RKey)) {
+        Point2D mouse = SwinGame.MousePosition();
+        ///////////////// Check when pressing "R" button on image it resets the human player and the computer player
+        if (SwinGame.MouseClicked(MouseButton.LeftButton) && mouse.X > UtilityFunctions.FIELD_LEFT + 340 && mouse.Y > UtilityFunctions.FIELD_TOP - 50 && mouse.X < UtilityFunctions.FIELD_LEFT + 340 + 80 && mouse.Y < UtilityFunctions.FIELD_TOP - 50 + 46)
+        {
+            GameController.HumanPlayer.Reset();
+            GameController.ComputerPlayer.Reset();
+        }
+
+        // Check when pressing "R" it reset the human player and the computer player
+        if (SwinGame.KeyDown(KeyCode.RKey)) {
 			GameController.HumanPlayer.Reset();
 			GameController.ComputerPlayer.Reset();
 		}
@@ -82,7 +90,10 @@ public static class DiscoveryController
 			SwinGame.DrawText("AI Turn", Color.White, GameResources.GameFont("Courier"), UtilityFunctions.FIELD_LEFT, UtilityFunctions.FIELD_TOP - 30);
 		}
 
-		UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
+        ///////////////// Draws the reset button
+        SwinGame.DrawBitmap(GameResources.GameImage("ResetButton"), UtilityFunctions.FIELD_LEFT + 340, UtilityFunctions.FIELD_TOP - 50);
+
+        UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
 		UtilityFunctions.DrawMessage();
 		SwinGame.DrawText(GameController.HumanPlayer.Shots.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SHOTS_TOP);
 		SwinGame.DrawText(GameController.HumanPlayer.Hits.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, HITS_TOP);
