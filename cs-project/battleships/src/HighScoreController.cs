@@ -11,7 +11,7 @@ using System;
 // '' </remarks>
 public static class HighScoreController
 {
-	private const int NAME_WIDTH = 3;
+	private const int NAME_WIDTH = 8;
 	private const int SCORES_LEFT = 490;
 
 	// '' <summary>
@@ -54,12 +54,12 @@ public static class HighScoreController
 
 		_scores.Clear();
 		for (int i = 1; (i <= numScores); i++)
-		{
-			string line = input.ReadLine();
-
+		{ 
+            string line = input.ReadLine();
+            
 			Score s;
 			s.Name = line.Substring(0, NAME_WIDTH);
-			s.Value = Convert.ToInt32(line.Substring(NAME_WIDTH));
+            s.Value = Convert.ToInt32(line.Substring(NAME_WIDTH));
 			_scores.Add(s);
 		}
 
@@ -174,9 +174,9 @@ public static class HighScoreController
 
 			// Set the name length to 3 characters
 			s.Name = SwinGame.TextReadAsASCII();
-			if ((s.Name.Length < 3))
+			if ((s.Name.Length < NAME_WIDTH))
 			{
-				s.Name = (s.Name + new string(' ', 3 - s.Name.Length));
+				s.Name = (s.Name + new string(' ', NAME_WIDTH - s.Name.Length));
 			}
 
 			_scores.RemoveAt((_scores.Count - 1));

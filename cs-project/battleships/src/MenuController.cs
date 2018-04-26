@@ -4,7 +4,7 @@ using System;
 // '' <summary>
 // '' The menu controller handles the drawing and user interactions
 // '' from the menus in the game. These include the main menu, game
-// '' menu and the settings m,enu.
+// '' menu and the settings menu.
 // '' </summary>
 public static class MenuController
 {
@@ -111,8 +111,6 @@ public static class MenuController
 	// '' </summary>
 	public static void DrawMainMenu()
 	{
-		// Clears the Screen to Black
-		// SwinGame.DrawText("Main Menu", Color.White, GameFont("ArialLarge"), 50, 50)
 		DrawButtons(MAIN_MENU);
 	}
 
@@ -121,8 +119,6 @@ public static class MenuController
 	// '' </summary>
 	public static void DrawGameMenu()
 	{
-		// Clears the Screen to Black
-		// SwinGame.DrawText("Paused", Color.White, GameFont("ArialLarge"), 50, 50)
 		DrawButtons(GAME_MENU);
 	}
 
@@ -134,8 +130,6 @@ public static class MenuController
 	// '' </remarks>
 	public static void DrawSettings()
 	{
-		// Clears the Screen to Black
-		// SwinGame.DrawText("Settings", Color.White, GameFont("ArialLarge"), 50, 50)
 		DrawButtons(MAIN_MENU);
 		DrawButtons(SETUP_MENU, 1, 1);
 	}
